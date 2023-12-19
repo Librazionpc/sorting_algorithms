@@ -1,21 +1,5 @@
 #include "sort.h"
 /**
- * swapValue - That swaps interger
- * @int1: The First integer to be swapped
- * @int2: The Second integer to be swapped
- *
- * Return: Nothing
- */
-void swapValue(int *int1, int *int2)
-{
-	int a = 0;
-
-	a = *int1;
-	*int1 = *int2;
-	*int2 = a;
-
-}
-/**
  * bubble_sort - Function that uses bubble algorithm sort unordered integers
  * @array: The array of the integers
  * @size: Length of the integers
@@ -25,6 +9,7 @@ void swapValue(int *int1, int *int2)
 void bubble_sort(int *array, size_t size)
 {
 	size_t check = 0, i = 0, j;
+	int val;
 
 	if (array == NULL || size == 0)
 		return;
@@ -35,7 +20,9 @@ void bubble_sort(int *array, size_t size)
 		{
 			if (array[i] > array[i + 1])
 			{
-				swapValue(&array[i], &array[i + 1]);
+				val = array[i];
+				array[i] = array[i + 1];
+				array[i + 1] = val;
 				print_array(array, size);
 				check = 1;
 			}
