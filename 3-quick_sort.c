@@ -7,14 +7,16 @@
  *
  * Return: Nothing
  */
-void swapValue(int *int1, int *int2)
+int swapValue(int *int1, int *int2)
 {
 	int a = 0;
 
+	if (*int1 == *int2)
+		return (0);
 	a = *int1;
 	*int1 = *int2;
 	*int2 = a;
-
+	return (1);
 }
 /**
  * partition - function that splits array according to its pivot
@@ -29,24 +31,23 @@ void swapValue(int *int1, int *int2)
 
 int partition(int *array, int beging, int end, int size)
 {
-	int pivot, i, j;
+	int pivot, i, j, res;
 
 	pivot = array[end];
 	i = beging - 1;
 
 	for (j = beging; j <= end - 1; j++)
 	{
-		if (array[j] < pivot)
+		if (array[j] < pivot && array[i] != array[j])
 		{
 			i++;
-			swapValue(&array[i], &array[j]);
-			if (i != j)
+			res = swapValue(&array[i], &array[j]);
+			if (i != j && res == 1)
 				print_array(array, size);
 		}
 	}
-	swapValue(&array[i + 1], &array[end]);
-
-	if (i + 1 != end)
+	res = swapValue(&array[i + 1], &array[end]);
+	if (i + 1 != end && res == 1)
 		print_array(array, size);
 
 	return (i + 1);
@@ -88,7 +89,7 @@ void lomuto(int *array, int beging, int end, int size)
 
 void quick_sort(int *array, size_t size)
 {
-	if (array == NULL)
+	if (array == NULL || size == 0)
 		return;
 	lomuto(array, 0, size - 1, size);
 }
