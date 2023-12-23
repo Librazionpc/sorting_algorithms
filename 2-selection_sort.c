@@ -8,13 +8,15 @@
  * Return: Nothing
  */
 
-void swapValue(int *int1, int *int2)
+int swapValue(int *int1, int *int2)
 {
 	int a = 0;
-
+	if  (*int1 == *int2)
+		return (0);
 	a = *int1;
 	*int1 = *int2;
 	*int2 = a;
+	return (1);
 
 }
 
